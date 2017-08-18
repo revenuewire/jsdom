@@ -8,9 +8,15 @@ const PORT = 8080;
 
 // App
 const app = express();
+
+//health check
+app.get('/ok', function (req, res) {
+    res.status(200);
+    res.send("ok");
+});
+
 app.get('/', function (req, res) {
     var deltaData = JSON.parse(req.query.delta);
-    console.log(deltaData);
 
     jsdom.env({
         html: '<div id="editor-container"></div>',
@@ -41,4 +47,3 @@ app.get('/', function (req, res) {
 });
 
 app.listen(PORT);
-console.log('Running on http://localhost:' + PORT);
